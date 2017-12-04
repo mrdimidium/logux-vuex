@@ -1,7 +1,5 @@
-function createLoguxCreator(config) {
+function createLoguxCreator () {
 
 }
 
 module.exports = createLoguxCreator
-
-

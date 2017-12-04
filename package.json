@@ -11,10 +11,26 @@
   "repository": "nikolay-govorov/logux-vuex",
   "dependencies": {},
   "devDependencies": {
-    "jest": "^21.2.1"
+    "eslint": "^4.12.1",
+    "eslint-config-logux": "^17.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-es5": "^1.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.3.2",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "jest": "^21.2.1",
+    "lint-staged": "^6.0.0",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^2.6.2"
   },
   "scripts": {
-    "test": "jest --coverage"
+    "lint-staged": "lint-staged",
+    "clean": "rimraf coverage/",
+    "lint": "eslint *.js test/{**/,}*.js",
+    "test": "jest --coverage && npm run lint"
   },
   "jest": {
     "coverageThreshold": {
@@ -22,5 +38,14 @@
         "statements": 100
       }
     }
-  }
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-logux/browser"
+  },
+  "lint-staged": {
+    "*.js": "eslint"
+  },
+  "pre-commit": [
+    "lint-staged"
+  ]
 }
