@@ -4,7 +4,7 @@ var TestTime = require('logux-core').TestTime
 
 Vue.use(Vuex)
 
-var createLoguxCreator = require('../create-logux-creator')
+var createLoguxStore = require('../create-logux-store')
 
 function createStore (config, opts) {
   if (!opts) opts = { }
@@ -14,25 +14,33 @@ function createStore (config, opts) {
   opts.userId = 10
   opts.time = new TestTime()
 
-  var creator = createLoguxCreator(opts)
+  var LoguxStore = createLoguxStore(opts)
 
-  return creator(config)
+  return new LoguxStore(config)
 }
 
 var vuexConfig = {
   state: {
-    value: 1
+    value: 0
+  },
+
+  mutations: {
+    increment: function (state) {
+      state.value++
+    }
   }
 }
 
 it('throws error on missed config', function () {
   expect(function () {
-    createLoguxCreator()
+    createLoguxStore()
   }).toThrowError('Missed server option in Logux client')
 })
 
 it('creates Vuex store', function () {
   var store = createStore(vuexConfig)
+
+  store.commit('increment')
 
   expect(store.state).toEqual({ value: 1 })
 })

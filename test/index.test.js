@@ -1,6 +1,6 @@
-var createLoguxCreator = require('../create-logux-creator')
+var createLoguxStore = require('../create-logux-store')
 var index = require('../')
 
 it('has createLoguxCreator function', function () {
-  expect(index.createLoguxCreator).toBe(createLoguxCreator)
+  expect(index.createLoguxStore).toBe(createLoguxStore)
 })
