@@ -1,0 +1,15 @@
+{
+  "name": "logux-vuex",
+  "version": "0.0.1",
+  "description": "Vuex compatible API for Logux",
+  "keywords": [
+    "logux",
+    "client",
+    "vuex"
+  ],
+  "author": "Nikolay Govorov <nikolay_govorov@bk.ru>",
+  "repository": "nikolay-govorov/logux-vuex",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {}
+}

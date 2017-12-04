@@ -1,2 +1,3 @@
-# logux-vuex
-Vuex compatible API for Logux 
+# Logux Vuex
+
+Vuex compatible API for Logux
