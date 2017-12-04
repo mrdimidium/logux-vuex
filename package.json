@@ -10,6 +10,17 @@
   "author": "Nikolay Govorov <nikolay_govorov@bk.ru>",
   "repository": "nikolay-govorov/logux-vuex",
   "dependencies": {},
-  "devDependencies": {},
-  "scripts": {}
+  "devDependencies": {
+    "jest": "^21.2.1"
+  },
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "statements": 100
+      }
+    }
+  }
 }
