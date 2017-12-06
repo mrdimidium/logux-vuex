@@ -16,17 +16,19 @@ function createStore (config, opts) {
 
   var LoguxStore = createLoguxStore(opts)
 
-  return new LoguxStore(config)
+  return new LoguxStore(Object.assign({}, config))
 }
 
-var vuexConfig = {
-  state: {
-    value: 0
-  },
+function getVuexConfig () {
+  return {
+    state: {
+      value: 0
+    },
 
-  mutations: {
-    increment: function (state) {
-      state.value++
+    mutations: {
+      increment: function (state) {
+        state.value++
+      }
     }
   }
 }
@@ -38,15 +40,34 @@ it('throws error on missed config', function () {
 })
 
 it('creates Vuex store', function () {
-  var store = createStore(vuexConfig)
+  var store = createStore(getVuexConfig())
 
-  store.commit('increment')
+  store.commit({
+    type: 'increment'
+  })
 
   expect(store.state).toEqual({ value: 1 })
 })
 
 it('creates Logux client', function () {
-  var store = createStore(vuexConfig)
+  var store = createStore(getVuexConfig())
 
   expect(store.client.options.subprotocol).toEqual('1.0.0')
+})
+
+it('sets tab ID', function () {
+  var store = createStore(getVuexConfig())
+
+  return new Promise(function (resolve) {
+    store.log.on('add', function (action, meta) {
+      expect(meta.tab).toEqual(store.client.id)
+      expect(meta.reasons).toEqual(['tab' + store.client.id])
+
+      resolve()
+    })
+
+    store.commit({
+      type: 'increment'
+    })
+  })
 })
