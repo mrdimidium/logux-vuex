@@ -46,7 +46,41 @@ const store = new Store({
 
 +store.client.start()
 ```
-
-See also [Logux Status] for UX best practices.
+See also [basic usage example](https://github.com/nikolay-govorov/logux-vuex-example) and [Logux Status] for UX best practices.
 
 [Logux Status]: https://github.com/logux/logux-status
+
+## Commit
+
+Instead of Vuex, in Logux Vuex you have 4 ways to commit action:
+
+* `store.commit(action)` is legacy API. Try to avoid it since you can’t
+  specify how clean this actions.
+* `store.dispatch.local(action, meta)` — action will be visible only to current
+  browser tab.
+* `store.dispatch.crossTab(action, meta)` — action will be visible
+  to all browser tab.
+* `store.dispatch.sync(action, meta)` — action will be visible to server
+  and all browser tabs.
+
+In all 3 new commit methods you must to specify `meta.reasons` with array
+of “reasons”. It is code names of reasons, why this action should be still
+in the log.
+
+```js
+store.commit.crossTab(
+  { type: 'CHANGE_NAME', name }, { reasons: ['lastName'] }
+)
+```
+
+When you don’t need some actions, you can remove reasons from them:
+
+```js
+store.commit.crossTab(
+  { type: 'CHANGE_NAME', name }, { reasons: ['lastName'] }
+).then(meta => {
+  store.log.removeReason('lastName', { maxAdded: meta.added - 1 })
+})
+```
+
+Action with empty reasons will be removed from log.
