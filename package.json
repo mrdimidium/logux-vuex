@@ -31,13 +31,14 @@
     "lint-staged": "^6.0.0",
     "pre-commit": "^1.2.2",
     "rimraf": "^2.6.2",
+    "size-limit": "^0.13.2",
     "vue": "^2.5.9"
   },
   "scripts": {
     "lint-staged": "lint-staged",
     "clean": "rimraf coverage/",
     "lint": "eslint *.js test/{**/,}*.js",
-    "test": "jest --coverage && npm run lint"
+    "test": "jest --coverage && npm run lint && size-limit"
   },
   "jest": {
     "coverageThreshold": {
@@ -49,6 +50,12 @@
   "eslintConfig": {
     "extends": "eslint-config-logux/browser"
   },
+  "size-limit": [
+    {
+      "path": "index.js",
+      "limit": "13.09 KB"
+    }
+  ],
   "lint-staged": {
     "*.js": "eslint"
   },
