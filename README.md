@@ -3,6 +3,8 @@
 <img align="right" width="95" height="95" title="Logux logo"
      src="https://cdn.rawgit.com/logux/logux/master/logo.svg">
 
+[![Build Status](https://travis-ci.org/nikolay-govorov/logux-vuex.svg?branch=master)](https://travis-ci.org/nikolay-govorov/logux-vuex)
+
 Logux is a client-server communication protocol. It synchronizes action
 between clients and server logs.
 
