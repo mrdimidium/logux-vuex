@@ -56,11 +56,11 @@ Instead of Vuex, in Logux Vuex you have 4 ways to commit action:
 
 * `store.commit(action)` is legacy API. Try to avoid it since you can’t
   specify how clean this actions.
-* `store.dispatch.local(action, meta)` — action will be visible only to current
+* `store.commit.local(action, meta)` — action will be visible only to current
   browser tab.
-* `store.dispatch.crossTab(action, meta)` — action will be visible
+* `store.commit.crossTab(action, meta)` — action will be visible
   to all browser tab.
-* `store.dispatch.sync(action, meta)` — action will be visible to server
+* `store.commit.sync(action, meta)` — action will be visible to server
   and all browser tabs.
 
 In all 3 new commit methods you must to specify `meta.reasons` with array
