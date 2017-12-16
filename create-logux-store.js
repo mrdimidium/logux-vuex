@@ -22,6 +22,7 @@ function LoguxState (client, config, vuexConfig) {
   var init
   var prevMeta
   var replaying
+  var wait = {}
   var history = {}
   var actionCount = 0
   var started = (function (now) {
@@ -97,7 +98,10 @@ function LoguxState (client, config, vuexConfig) {
   })
 
   client.on('clean', function (action, meta) {
-    delete history[meta.id.join('\t')]
+    var key = meta.id.join('\t')
+
+    delete wait[key]
+    delete history[key]
   })
 
   client.sync.on('state', function () {
@@ -232,9 +236,17 @@ function LoguxState (client, config, vuexConfig) {
 
   function process (action, meta, replayIsSafe) {
     if (replaying) {
+      var key = meta.id.join('\t')
+      wait[key] = true
+
       replaying.then(function () {
-        process(action, meta, replayIsSafe)
+        if (wait[key]) {
+          process(action, meta, replayIsSafe)
+
+          delete wait[key]
+        }
       })
+
       return
     }
 
