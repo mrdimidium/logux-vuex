@@ -10,6 +10,8 @@
   "author": "Nikolay Govorov <nikolay_govorov@bk.ru>",
   "repository": "nikolay-govorov/logux-vuex",
   "dependencies": {
+    "docdash": "^0.4.0",
+    "jsdoc": "^3.5.5",
     "logux-client": "^0.2.5",
     "logux-core": "^0.2.1",
     "logux-sync": "^0.2.2",
@@ -38,6 +40,7 @@
     "lint-staged": "lint-staged",
     "clean": "rimraf coverage/",
     "lint": "eslint *.js test/{**/,}*.js",
+    "docs": "jsdoc --configure .jsdocrc *.js",
     "test": "jest --coverage && npm run lint && size-limit"
   },
   "jest": {
