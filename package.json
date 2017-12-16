@@ -17,12 +17,12 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "eslint": "^4.12.1",
+    "eslint": "^4.13.1",
     "eslint-config-logux": "^17.0.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-es5": "^1.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jest": "^21.3.2",
+    "eslint-plugin-jest": "^21.5.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-security": "^1.4.0",
@@ -32,7 +32,7 @@
     "pre-commit": "^1.2.2",
     "rimraf": "^2.6.2",
     "size-limit": "^0.13.2",
-    "vue": "^2.5.9"
+    "vue": "^2.5.11"
   },
   "scripts": {
     "lint-staged": "lint-staged",
