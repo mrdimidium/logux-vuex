@@ -37,7 +37,7 @@ function LoguxState (client, config, vuexConfig) {
     var action
     var isNoObjectTypeAction
 
-    if (arguments.length > 1) {
+    if (typeof arguments[0] === 'string') {
       var type = arguments[0]
       var options = Array.from(arguments).slice(1)
       isNoObjectTypeAction = true
