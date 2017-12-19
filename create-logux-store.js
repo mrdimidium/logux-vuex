@@ -33,7 +33,23 @@ function LoguxState (client, config, vuexConfig) {
     init = resolve
   })
 
-  self.commit = function commit (action) {
+  self.commit = function commit () {
+    var action
+    var isNoObjectTypeAction
+
+    if (arguments.length > 1) {
+      var type = arguments[0]
+      var options = Array.from(arguments).slice(1)
+      isNoObjectTypeAction = true
+
+      action = {
+        type: type,
+        options: options
+      }
+    } else {
+      action = arguments[0]
+    }
+
     var meta = {
       id: client.log.generateId(),
       tab: client.id,
@@ -44,7 +60,7 @@ function LoguxState (client, config, vuexConfig) {
     client.log.add(action, meta)
 
     prevMeta = meta
-    originCommit(action)
+    originCommit(action, isNoObjectTypeAction)
     saveHistory(meta)
   }
 
@@ -141,14 +157,20 @@ function LoguxState (client, config, vuexConfig) {
     }
   }
 
-  function originCommit (action) {
+  function originCommit (action, isNotObjectTypeAction) {
     if (action.type === 'logux/state') {
       self.replaceState(action.state)
 
       return
     }
 
-    Store.prototype.commit.apply(self, arguments)
+    var commitArgs = arguments
+
+    if (isNotObjectTypeAction) {
+      commitArgs = [action.type].concat(action.options)
+    }
+
+    Store.prototype.commit.apply(self, commitArgs)
   }
 
   function replaceState (state, actions) {

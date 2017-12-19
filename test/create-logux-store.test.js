@@ -67,6 +67,18 @@ it('creates Vuex store', function () {
   expect(store.state).toEqual({ value: 1 })
 })
 
+it('not Object type action', function () {
+  var store = createStore({
+    increment: function (state, count) {
+      state.value = state.value + count
+    }
+  })
+
+  store.commit('increment', 5)
+
+  expect(store.state).toEqual({ value: 5 })
+})
+
 it('creates Logux client', function () {
   var store = createStore({ increment: increment })
 
