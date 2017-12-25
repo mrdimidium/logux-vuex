@@ -170,7 +170,9 @@ function LoguxState (client, config, vuexConfig) {
       commitArgs = [action.type].concat(action.options)
     }
 
-    Store.prototype.commit.apply(self, commitArgs)
+    if (action.type in self._mutations) {
+      Store.prototype.commit.apply(self, commitArgs)
+    }
   }
 
   function replaceState (state, actions) {
