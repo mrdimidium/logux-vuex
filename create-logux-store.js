@@ -179,7 +179,9 @@ function LoguxState (client, config, vuexConfig) {
     var newState = actions.reduceRight(function (prev, i) {
       var changed = nanoclone(prev)
 
-      vuexConfig.mutations[i[0].type](changed, i[0])
+      if (vuexConfig.mutations[i[0].type]) {
+        vuexConfig.mutations[i[0].type](changed, i[0])
+      }
 
       if (history[i[1]]) history[i[1]] = changed
 
