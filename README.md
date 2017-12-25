@@ -13,7 +13,7 @@ This library provides Vuex compatible API.
 ## Install
 
 ```sh
-npm i --save nikolay-govorov/logux-vuex
+npm i --save logux-vuex
 ```
 
 ## Usage
