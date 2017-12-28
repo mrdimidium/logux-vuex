@@ -85,6 +85,19 @@ it('creates Logux client', function () {
   expect(store.client.options.subprotocol).toEqual('1.0.0')
 })
 
+it('not found mutation', function () {
+  var store = createStore({ increment: increment })
+
+  store.commit.crossTab({ type: 'mutation' })
+
+  store.commit('increment')
+  store.commit('increment')
+
+  store.commit({ type: 'logux/state', state: { value: 1 } })
+
+  expect(store.state).toEqual({ value: 1 })
+})
+
 it('sets tab ID', function () {
   var store = createStore({ increment: increment })
 
