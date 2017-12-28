@@ -1,0 +1,26 @@
+{
+  "name": "logux-vuex-example",
+  "version": "0.1.0",
+  "description": "An example application using logux-vuex",
+  "scripts": {
+    "dev": "nodemon index.js & webpack-dev-server",
+    "prod": "node index.js & static public",
+    "build": "webpack"
+  },
+  "author": "Nikolay Govorov <nikolay_govorov@bk.ru>",
+  "dependencies": {
+    "logux-core": "^0.2.1",
+    "logux-server": "^0.2.4",
+    "logux-vuex": "github:nikolay-govorov/logux-vuex",
+    "node-static": "^0.7.10",
+    "vue": "^2.5.9",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "vue-loader": "^13.5.0",
+    "vue-style-loader": "^3.0.3",
+    "vue-template-compiler": "^2.5.9",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
+  }
+}

@@ -10,6 +10,8 @@ between clients and server logs.
 
 This library provides Vuex compatible API.
 
+You may see the examples in the [`examples` folder](example/).
+
 ## Install
 
 ```sh
