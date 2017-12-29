@@ -399,30 +399,28 @@ it('does not fall on missed onMissedHistory', function () {
 })
 
 it('cleans action added by commit', function () {
-// TODO: fix commitHistory
+  var store = createStore({ historyLine: historyLine }, {
+    dispatchHistory: 3
+  })
 
-//   var store = createStore({ historyLine: historyLine }, {
-//     commitHistory: 3
-//   })
+  function add (index) {
+    return function () {
+      store.commit({ type: 'historyLine', value: index })
+    }
+  }
 
-//   function add (index) {
-//     return function () {
-//       store.commit({ type: 'historyLine', value: index })
-//     }
-//   }
+  var promise = Promise.resolve()
+  for (var i = 1; i <= 25; i++) {
+    promise = promise.then(add(i))
+  }
 
-//   var promise = Promise.resolve()
-//   for (var i = 1; i <= 25; i++) {
-//     promise = promise.then(add(i))
-//   }
-
-//   return promise.then(function () {
-//     expect(actions(store.log)).toEqual([
-//       { type: 'historyLine', value: 25 },
-//       { type: 'historyLine', value: 24 },
-//       { type: 'historyLine', value: 23 }
-//     ])
-//   })
+  return promise.then(function () {
+    expect(actions(store.log)).toEqual([
+      { type: 'historyLine', value: 25 },
+      { type: 'historyLine', value: 24 },
+      { type: 'historyLine', value: 23 }
+    ])
+  })
 })
 
 it('cleans last 1000 by default', function () {
