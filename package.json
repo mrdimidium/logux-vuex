@@ -10,15 +10,15 @@
   "author": "Nikolay Govorov <nikolay_govorov@bk.ru>",
   "repository": "nikolay-govorov/logux-vuex",
   "dependencies": {
-    "logux-client": "^0.2.5",
+    "logux-client": "^0.2.6",
     "logux-core": "^0.2.1",
-    "logux-sync": "^0.2.2",
+    "logux-sync": "^0.2.3",
     "nanoclone": "^0.1.2",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
     "docdash": "^0.4.0",
-    "eslint": "^4.13.1",
+    "eslint": "^4.14.0",
     "eslint-config-logux": "^17.0.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-es5": "^1.1.0",
@@ -34,7 +34,7 @@
     "pre-commit": "^1.2.2",
     "rimraf": "^2.6.2",
     "size-limit": "^0.13.2",
-    "vue": "^2.5.11",
+    "vue": "^2.5.13",
     "yaspeller-ci": "^1.0.0"
   },
   "scripts": {
