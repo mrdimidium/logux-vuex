@@ -40,7 +40,7 @@ function LoguxState (client, config, vuexConfig) {
 
     if (typeof arguments[0] === 'string') {
       var type = arguments[0]
-      var options = Array.from(arguments).slice(1)
+      var options = Array.prototype.slice.call(arguments, 1)
       isNoObjectTypeAction = true
 
       action = {
