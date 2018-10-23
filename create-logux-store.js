@@ -1,7 +1,8 @@
 var Store = require('vuex').Store
-var nanoclone = require('nanoclone')
 var isFirstOlder = require('logux-core/is-first-older')
 var CrossTabClient = require('logux-client/cross-tab-client')
+
+var deepClone = require('./utils/deep-clone')
 
 function warnBadUndo (id) {
   var json = JSON.stringify(id)
@@ -14,7 +15,7 @@ function warnBadUndo (id) {
 function LoguxState (client, config, vuexConfig) {
   var self = this
 
-  Store.call(this, nanoclone(vuexConfig))
+  Store.call(this, deepClone(vuexConfig))
 
   this.client = client
   this.log = client.log
@@ -153,7 +154,7 @@ function LoguxState (client, config, vuexConfig) {
     if (
       config.saveStateEvery === 1 || actionCount % config.saveStateEvery === 1
     ) {
-      history[meta.id.join('\t')] = nanoclone(self.state)
+      history[meta.id.join('\t')] = deepClone(self.state)
     }
   }
 
@@ -177,7 +178,7 @@ function LoguxState (client, config, vuexConfig) {
 
   function replaceState (state, actions) {
     var newState = actions.reduceRight(function (prev, i) {
-      var changed = nanoclone(prev)
+      var changed = deepClone(prev)
 
       if (vuexConfig.mutations[i[0].type]) {
         vuexConfig.mutations[i[0].type](changed, i[0])
@@ -248,7 +249,7 @@ function LoguxState (client, config, vuexConfig) {
           }
 
           if (!replayed) {
-            replaceState(nanoclone(vuexConfig.state), full)
+            replaceState(deepClone(vuexConfig.state), full)
           }
         }
 
